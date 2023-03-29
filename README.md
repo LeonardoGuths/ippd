@@ -1,6 +1,10 @@
 # IPPD
 
+<<<<<<< HEAD
 - Resolução do problema das N Rainhas em OpenMP.
+=======
+- Repository containing codes and stuff from the Introduction to parallel and distributed processing class.
+>>>>>>> bfd7e38c9e40f9024d285a94edfcfe8ef0752e89
 
 ## Integrantes
 
