@@ -1,10 +1,6 @@
 # IPPD
 
-<<<<<<< HEAD
 - Resolução do problema das N Rainhas em OpenMP.
-=======
-- Repository containing codes and stuff from the Introduction to parallel and distributed processing class.
->>>>>>> bfd7e38c9e40f9024d285a94edfcfe8ef0752e89
 
 ## Integrantes
 
@@ -28,4 +24,5 @@
     ```console
     ./nrainhas <N (núm. de rainhas)> <núm. de threads>
     ```
+
     **Obs:** caso o número de threads não seja inserido na execução, o programa será executado de forma serial, ou seja, utilizando apenas uma thread.
