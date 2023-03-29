@@ -6,6 +6,8 @@
 
 - Leandro Weber Tavares
 - Leonardo dos Santos Guths
+- Marcelo da Silva Dias
+- Murillo Aleixo Mota
 
 ## Compilar e executar
 
