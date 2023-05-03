@@ -118,16 +118,19 @@ int main(int argc, char *argv[])
 
     MPI_Barrier(MPI_COMM_WORLD);
 
-    if(myrank == 0) {
-    for (int i = 1; i < worldSize; i++) {
-        MPI_Recv(&aux, 1, MPI_INT, i, MPI_ANY_TAG, MPI_COMM_WORLD, &st);
-        sum += aux;
-    }
+    if(myrank == 0) 
+    {
+        for (int i = 1; i < worldSize; i++) 
+        {
+            MPI_Recv(&aux, 1, MPI_INT, i, MPI_ANY_TAG, MPI_COMM_WORLD, &st);
+            sum += aux;
+        }
 
-    printf("Numero de solucoes: %d\n", sum + sendSolutions);
-    double end = omp_get_wtime();
-    printf("Tempo de execucao: %fs\n", end - start);
-}
+        printf("Numero de solucoes: %d\n", sum + sendSolutions);
+        double end = omp_get_wtime();
+        printf("Tempo de execucao: %fs\n", end - start);
+    }
+    
     MPI_Finalize();
     return 0;  
 }
