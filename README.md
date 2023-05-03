@@ -2,7 +2,7 @@
   IPPD
 </h1>
 
-### Repository containing codes and stuff from the Introduction to parallel and distributed processing class.
+#### Repository containing codes and stuff from the Introduction to parallel and distributed processing class.
 
 <p align="center">
   <a href="https://portal.ufpel.edu.br/">
