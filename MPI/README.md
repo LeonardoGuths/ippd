@@ -16,7 +16,7 @@
     Para compilar é necessário a instalação de um compilador MPI, além de possuir suporte para OpenMP instalado, através da seguinte linha de comando:
 
     ```console
-    mpicc -fopenmp nrainhas_mpi.c -o nrainhas_mpi
+    mpicc -fopenmp nqueens_mpi.c -o nqueens_mpi
     ```
 
 2.  **Para executar**
@@ -24,7 +24,7 @@
     Após gerar o arquivo executável, basta rodar colocando os parâmetros de entrada conforme as instruções a seguir:
 
     ```console
-    mpirun -np <núm. de processos MPI> ./nrainhas_mpi <N (núm. de rainhas)> <núm. de threads>
+    mpirun -np <núm. de processos MPI> ./nqueens_mpi <N (núm. de rainhas)> <núm. de threads>
     ```
     **Obs1:** para o funcionamento correto do programa, o número de processos MPI necessita ser igual a (núm. de rainhas + 1).
     
