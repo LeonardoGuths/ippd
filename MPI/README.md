@@ -26,6 +26,5 @@
     ```console
     mpirun -np <núm. de processos MPI> ./nrainhas_mpi <N (núm. de rainhas)> <núm. de threads>
     ```
-    **Obs1:** para o funcionamento correto do programa, o número de processos MPI necessita ser igual a (núm. de rainhas + 1).
-    
-    **Obs2:** caso o número de threads não seja inserido na execução, o programa será executado de forma serial, ou seja, utilizando apenas uma thread.
+
+    **Obs:** caso o número de threads não seja inserido na execução, o programa será executado de forma serial, ou seja, utilizando apenas uma thread.

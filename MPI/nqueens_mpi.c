@@ -73,19 +73,18 @@ int nrainhas(int n, int rank){
 
 int main(int argc, char *argv[]) {
     int n;
-    int sbuf, rbuf;
     int solutions;
     int myrank;
     int aux;
     int sum = 0;
     int sendSolutions;
     int worldSize;
+    int x;
     MPI_Status st;
 
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
     MPI_Comm_size(MPI_COMM_WORLD, &worldSize); // Quantos processos envolvidos?
-    // printf("%d %d\n",myrank, worldSize);
     n = atoi(argv[1]);
 
     if (argc < 3)
@@ -93,41 +92,33 @@ int main(int argc, char *argv[]) {
     else
         omp_set_num_threads(atoi(argv[2]));
 
-if(myrank == 0) {
-    // printf("if myrank = 0 -> myrank de vdd: %d\n",myrank);
     double start = omp_get_wtime();
-    MPI_Barrier(MPI_COMM_WORLD);
-    // printf("barera");
-    // printf("passei da barrera-> myrank de vdd: %d\n",myrank);
 
+    // x=n-worldSize;
+    // sendSolutions = nrainhas(n, myrank);
+    
+    for (int i = 0; i < n; i++)
+    {
+        if((i % worldSize) == myrank)
+            sendSolutions += nrainhas(n, i);
+            // printf("myrank: %d myqueen: %d\n",myrank,i);
+    }
+
+    if (myrank!=0)
+        MPI_Send(&sendSolutions, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
+
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    if(myrank == 0) {
     for (int i = 1; i < worldSize; i++) {
         MPI_Recv(&aux, 1, MPI_INT, i, MPI_ANY_TAG, MPI_COMM_WORLD, &st);
         sum += aux;
     }
-    //MPI_Reduce(&sbuf, &rbuf, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-    printf("Numero de solucoes: %d\n",sum);
+
+    printf("Numero de solucoes: %d\n",sum+sendSolutions);
     double end = omp_get_wtime();
-
     printf("Tempo de execucao: %fs\n", end - start);
-
-    
-} else {
-    // printf("if myrank != 0 -> myrank: %d\n",myrank);
-
-    sendSolutions = nrainhas(n, myrank -1);
-    //printf("solutions %d\n",sendSolutions);
-    //MPI_Reduce(&sendSolutions, &rbuf, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-
-    MPI_Send(&sendSolutions, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
-    // printf("finalizei -> myrank: %d\n",myrank);
-    MPI_Barrier(MPI_COMM_WORLD);
-
-
-    // return 0;
 }
     MPI_Finalize(); // Finalização
-  
-    return 0;
-
-    
+    return 0;  
 }
